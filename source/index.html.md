@@ -65,6 +65,7 @@ This endpoint can be used to directly upload a file. A case is created after upl
 Parameter | Required | Description
 --------- | ------- | -----------
 file | true | Content-Type for file will be `multipart/form-data`
+document_type | false | Possible values can be one of the document type defined in the process
 
 
 ## Create Case
@@ -124,6 +125,7 @@ case_id | Case ID to which file needs to be added
 Parameter | Required | Description
 --------- | ------- | -----------
 file | true | Content-Type for file will be `multipart/form-data`
+document_type | false | Possible values can be one of the document type defined in the process
 
 ## Start Processing
 
