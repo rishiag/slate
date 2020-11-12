@@ -3,6 +3,8 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - python
+  - javascript
 
 toc_footers:
   - <a href='https://ikarus.ai/contact-us'>Get in touch for an API Key</a>
@@ -48,6 +50,52 @@ curl -X POST \
   -F 'file=@/home/file.pdf'
 ```
 
+```python
+import requests
+
+url = "https://api-prod.ikarus.ai/api/v1/cases/direct-upload/"
+
+payload={}
+files=[
+  ('file', open('/path/to/file','rb'))
+]
+headers = {
+  'API-KEY': 'dummyapikey',
+  'Accept': '*/*'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+print(response.text)
+```
+
+```javascript
+var axios = require('axios');
+var FormData = require('form-data');
+var fs = require('fs');
+var data = new FormData();
+data.append('file', fs.createReadStream('/path/to/file'));
+
+var config = {
+  method: 'post',
+  url: 'https://api-prod.ikarus.ai/api/v1/cases/direct-upload/',
+  headers: { 
+    'API-KEY': 'dummyapikey', 
+    'Accept': '*/*', 
+    ...data.getHeaders()
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -76,6 +124,44 @@ curl "curl -X POST \
   -H 'API-KEY: dummyapikey'"
 ```
 
+```python
+import requests
+
+url = "https://api-prod.ikarus.ai/api/v1/cases/"
+
+payload={}
+headers = {
+  'API-KEY': 'dummyapikey',
+  'Accept': '*/*'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var axios = require('axios');
+var data = '';
+
+var config = {
+  method: 'post',
+  url: 'https://api-prod.ikarus.ai/api/v1/cases/',
+  headers: { 
+    'API-KEY': 'dummyapikey', 
+    'Accept': '*/*'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
 > The above command returns JSON structured like this:
 
 ```json
@@ -99,6 +185,51 @@ curl -X POST \
   -F 'file=@/home/file.pdf'"
 ```
 
+```python
+import requests
+
+url = "https://api-prod.ikarus.ai/api/v1/cases/206/add-file/"
+
+payload={}
+files=[
+  ('file', open('/path/to/file','rb'))
+]
+headers = {
+  'API-KEY': 'dummyapikey',
+  'Accept': '*/*'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+print(response.text)
+```
+
+```javascript
+var axios = require('axios');
+var FormData = require('form-data');
+var fs = require('fs');
+var data = new FormData();
+data.append('file', fs.createReadStream('/path/to/file'));
+
+var config = {
+  method: 'post',
+  url: 'https://api-prod.ikarus.ai/api/v1/cases/206/add-file/',
+  headers: { 
+    'API-KEY': 'dummyapikey', 
+    'Accept': '*/*', 
+    ...data.getHeaders()
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
 > The above command returns JSON structured like this:
 
 ```json
@@ -135,6 +266,42 @@ curl -X POST \
   -H 'API-KEY: dummyapikey'
 ```
 
+```python
+import requests
+
+url = "https://api-prod.ikarus.ai/api/v1/cases/5/mark-complete/"
+
+payload={}
+headers = {
+  'API-KEY': 'dummyapikey'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var axios = require('axios');
+var data = '';
+
+var config = {
+  method: 'post',
+  url: 'https://api-prod.ikarus.ai/api/v1/cases/5/mark-complete/',
+  headers: { 
+    'API-KEY': 'dummyapikey'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
 > The above command returns JSON structured like this:
 
 ```json
@@ -160,13 +327,72 @@ case_id | Case ID which needs to be processed
 ## Get Case Detail
 
 ```shell
-Curl command will be updated shortly.
+curl --location --request GET 'https://api-prod.ikarus.ai/api/v1/cases/40' \
+--header 'API-KEY: dummyapikey'
 ```
 
+```python
+import requests
+
+url = "https://api-prod.ikarus.ai/api/v1/cases/40"
+
+payload={}
+headers = {
+  'API-KEY': 'dummyapikey'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'https://api-prod.ikarus.ai/api/v1/cases/40',
+  headers: { 
+    'API-KEY': 'dummyapikey'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
 > The above command returns JSON structured like this:
 
 ```json
-Response will be updated shortly.
+{
+    "case_id": 40,
+    "files": [
+        {
+            "file_name": "hp1.pdf",
+            "fields": [
+                {
+                    "display_name": "Invoice ID",
+                    "name": "invoice_id",
+                    "field_id": 1,
+                    "value": "8CN9150412"
+                },
+                {
+                    "display_name": "Date",
+                    "name": "date",
+                    "field_id": 2,
+                    "value": "20/10/2020"
+                }
+            ]
+        }
+    ],
+    "status": "completed",
+    "created_at": "2020-09-26T11:02:39.601000Z",
+    "updated_at": "2020-09-28T17:26:08.029000Z"
+}
 ```
 
 This API can be used to fetch data for a single case.
@@ -185,13 +411,66 @@ case_id | Case ID for which data needs to be fetched
 ## Get Cases
 
 ```shell
-Curl command will be updated shortly.
+curl --location --request GET 'https://api-prod.ikarus.ai/api/v1/cases/' \
+--header 'API-KEY: dummyapikey'
 ```
 
+```python
+import requests
+
+url = "https://api-prod.ikarus.ai/api/v1/cases/"
+
+payload={}
+headers = {
+  'API-KEY': 'dummyapikey'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'https://api-prod.ikarus.ai/api/v1/cases/',
+  headers: { 
+    'API-KEY': 'dummyapikey'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
 > The above command returns JSON structured like this:
 
 ```json
-Response will be updated shortly.
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "case_id": 1,
+            "status": "completed",
+            "created_at": "2020-10-05T18:51:52.713000Z",
+            "updated_at": "2020-10-05T18:54:20.910000Z"
+        },
+        {
+            "case_id": 2,
+            "status": "completed",
+            "created_at": "2020-10-07T12:34:05.050000Z",
+            "updated_at": "2020-10-07T12:36:23.550000Z"
+        }
+    ]
+}
 ```
 
 This API can be used to fetch data for multiple cases at once using query parameters.
@@ -214,13 +493,48 @@ offset | An Integer Number | | Number of cases to be skipped
 ## Get OCR Result
 
 ```shell
-Curl command will be updated shortly.
+curl --location --request GET 'https://api-prod.ikarus.ai/api/v1/cases/40/ocr-output?file_name=hp1.pdf' \
+--header 'API-KEY: dummyapikey'
 ```
 
+```python
+import requests
+
+url = "https://api-prod.ikarus.ai/api/v1/cases/40/ocr-output?file_name=hp1.pdf"
+
+payload={}
+headers = {
+  'API-KEY': 'dummyapikey'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'https://api-prod.ikarus.ai/api/v1/cases/40/ocr-output?file_name=hp1.pdf',
+  headers: { 
+    'API-KEY': 'dummyapikey'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
 > The above command returns JSON structured like this:
 
 ```json
-Response will be updated shortly.
+{"text":"raw ocr text present on page"}
 ```
 
 This API can be used to fetch raw OCR test of a file associated with any case.
